@@ -1,4 +1,3 @@
-// components/App.js
 import React, { useState } from 'react';
 import TaskList from './components/TaskList';
 import NewTaskForm from './components/NewTaskForm';
@@ -55,7 +54,7 @@ function App() {
   const filteredTasks = tasks.filter((task) => {
     if (filter === 'active') return !task.completed; // Показываем только активные задачи
     if (filter === 'completed') return task.completed; // Показываем только завершённые задачи
-    return true; // Если фильтр не активен, показываем все задачи
+    return true;
   });
 
   return (

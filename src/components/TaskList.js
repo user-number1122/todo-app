@@ -4,13 +4,7 @@ function TaskList({ tasks, toggleTask, deleteTask, editTask }) {
   return (
     <ul className="todo-list">
       {tasks.map((task) => (
-        <Task
-          key={task.id}
-          task={task}
-          toggleTask={toggleTask}
-          deleteTask={deleteTask}
-          editTask={editTask} // Передаем editTask в Task. Передаем функцию для редактирования.
-        />
+        <Task key={task.id} task={task} toggleTask={toggleTask} deleteTask={deleteTask} editTask={editTask} />
       ))}
     </ul>
   );

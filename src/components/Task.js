@@ -2,22 +2,19 @@ import React, { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
 function Task({ task, toggleTask, deleteTask, editTask }) {
-  const [newText, setNewText] = useState(task.text); // Хранение нового текста для редактирования
+  const [newText, setNewText] = useState(task.text);
 
   // Функция для обновления текста задачи при редактировании
   const handleEditChange = (e) => {
-    setNewText(e.target.value); // Обновляем состояние с новым текстом
+    setNewText(e.target.value);
   };
 
   // Функция для сохранения изменений при нажатии Enter или потере фокуса
   const handleEditSubmit = (e) => {
     if (e.key === 'Enter' || e.type === 'blur') {
-      // Проверяем, что текст не пустой
       if (newText.trim() !== '') {
-        // Если текст не пустой, сохраняем его
         editTask(task.id, newText);
       } else {
-        // Если текст пустой, просто выходим из режима редактирования, сохраняя старый текст
         editTask(task.id);
       }
     }
@@ -34,17 +31,7 @@ function Task({ task, toggleTask, deleteTask, editTask }) {
         <button className="icon icon-edit" onClick={() => editTask(task.id)}></button>
         <button className="icon icon-destroy" onClick={() => deleteTask(task.id)}></button>
       </div>
-      {task.editing && (
-        <input
-          type="text"
-          className="edit"
-          value={newText} // Значение берется из состояния
-          onChange={handleEditChange} // Обработка изменений текста
-          onBlur={handleEditSubmit} // Сохранение при потере фокуса
-          onKeyDown={handleEditSubmit} // Сохранение при нажатии Enter
-          autoFocus
-        />
-      )}
+      {task.editing && <input type="text" className="edit" value={newText} onChange={handleEditChange} onBlur={handleEditSubmit} onKeyDown={handleEditSubmit} autoFocus />}
     </li>
   );
 }

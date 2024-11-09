@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 function NewTaskForm({ addTask }) {
-  const [taskText, setTaskText] = useState(''); // текст новой задачи, введенный пользователем
-  // Обработчик отправки формы
+  const [taskText, setTaskText] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskText.trim()) {
       addTask(taskText);
-      setTaskText(''); // Очищаем поле после добавления задачи
+      setTaskText('');
     }
   };
   return (
@@ -18,4 +17,4 @@ function NewTaskForm({ addTask }) {
     </header>
   );
 }
-export default NewTaskForm; //Это действие предоставляет App.js доступ к компоненту NewTaskForm
+export default NewTaskForm;
