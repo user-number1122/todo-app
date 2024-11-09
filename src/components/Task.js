@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
 function Task({ task, toggleTask, deleteTask, editTask }) {
   const [newText, setNewText] = useState(task.text);
+  const [timeAgo, setTimeAgo] = useState(formatDistanceToNow(new Date(task.createdAt)));
+
+  // Обновляем время каждые 60 секунд
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeAgo(formatDistanceToNow(new Date(task.createdAt)));
+    }, 60000); // Обновление каждые 60 секунд
+
+    return () => clearInterval(interval);
+  }, [task.createdAt]);
 
   // Функция для обновления текста задачи при редактировании
   const handleEditChange = (e) => {
@@ -26,7 +36,7 @@ function Task({ task, toggleTask, deleteTask, editTask }) {
         <input className="toggle" type="checkbox" checked={task.completed} onChange={() => toggleTask(task.id)} />
         <label>
           <span className="description">{task.text}</span>
-          <span className="created">created {formatDistanceToNow(new Date(task.createdAt))} ago</span>
+          <span className="created">created {timeAgo} ago</span>
         </label>
         <button className="icon icon-edit" onClick={() => editTask(task.id)}></button>
         <button className="icon icon-destroy" onClick={() => deleteTask(task.id)}></button>

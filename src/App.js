@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskList from './components/TaskList';
 import NewTaskForm from './components/NewTaskForm';
 import Footer from './components/Footer';
 import './App.css';
 
 function App() {
-  const [tasks, setTasks] = useState([]); // Хранение задач
+  const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+  const [tasks, setTasks] = useState(savedTasks); // Хранение задач
   const [filter, setFilter] = useState('all'); // Фильтр для задач
+
+  // Сохраняем задачи в localStorage при их изменении
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]); // Это сработает каждый раз, когда tasks изменяются
 
   // Функция для добавления новой задачи
   const addTask = (text) => {
@@ -72,4 +79,5 @@ function App() {
     </section>
   );
 }
+
 export default App;
