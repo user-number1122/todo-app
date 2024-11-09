@@ -1,14 +1,9 @@
-//components.Task.js
 import React, { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
 function Task({ task, toggleTask, deleteTask, editTask }) {
   const [newText, setNewText] = useState(task.text); // Хранение нового текста для редактирования
 
-  /*
-  // Добавляем аудио
-  const saveSound = new Audio('/sounds/crystal.mp3'); // Путь к вашему аудиофайлу
-*/
   // Функция для обновления текста задачи при редактировании
   const handleEditChange = (e) => {
     setNewText(e.target.value); // Обновляем состояние с новым текстом
@@ -27,20 +22,6 @@ function Task({ task, toggleTask, deleteTask, editTask }) {
       }
     }
   };
-  /*
-  // Функция для сохранения изменений при нажатии Enter или потере фокуса
-  const handleEditSubmit = (e) => {
-    if (e.key === 'Enter' || e.type === 'blur') {
-      // Сохраняем при нажатии Enter или при потере фокуса
-      editTask(task.id, newText); // Передаем новый текст в editTask для обновления
-      
-      // Воспроизведение звука после сохранения
-      saveSound.play().catch((error) => {
-        console.error('Ошибка воспроизведения звука:', error);
-      });
-    }
-  };
-  */
 
   return (
     <li className={task.completed ? 'completed' : task.editing ? 'editing' : 'active'}>

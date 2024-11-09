@@ -1,4 +1,3 @@
-// components.TaskFilter.js
 import React from 'react';
 
 function TasksFilter({ filter, setFilter }) {

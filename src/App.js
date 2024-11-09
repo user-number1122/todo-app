@@ -9,12 +9,6 @@ function App() {
   const [tasks, setTasks] = useState([]); // Хранение задач
   const [filter, setFilter] = useState('all'); // Фильтр для задач
 
-  /*
-  // Загружаем аудиофайл
-  const createSound = new Audio('/sounds/fade-in.mp3');
-  const deleteSound = new Audio('/sounds/whoosh-electrical.mp3');
-  */
-
   // Функция для добавления новой задачи
   const addTask = (text) => {
     const newTask = {
@@ -25,12 +19,6 @@ function App() {
       editing: false,
     };
     setTasks([...tasks, newTask]); // Добавление задачи в список
-    /*
-    // Воспроизведение звука при создании новой задачи
-    createSound.play().catch((error) => {
-      console.error('Ошибка воспроизведения звука:', error);
-    });
-    */
   };
 
   // Функция для переключения статуса выполнения задачи
@@ -41,12 +29,6 @@ function App() {
   // Функция для удаления задачи
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
-    /*
-    // Воспроизведение звука при удалении задачи
-    deleteSound.play().catch((error) => {
-      console.error('Ошибка воспроизведения звука:', error);
-    });
-    */
   };
 
   // Функция для редактирования задачи
@@ -63,11 +45,6 @@ function App() {
       )
     );
   };
-  /*
-  const editTask = (id, newText = null) => {
-    setTasks(tasks.map((task) => (task.id === id ? { ...task, text: newText !== null ? newText : task.text, editing: !task.editing } : task)));
-  };
-*/
 
   // Функция для очистки выполненных задач
   const clearCompleted = () => {
@@ -96,5 +73,4 @@ function App() {
     </section>
   );
 }
-
 export default App;
